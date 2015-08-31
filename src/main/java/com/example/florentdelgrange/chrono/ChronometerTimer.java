@@ -10,7 +10,7 @@ import android.os.Handler;
 /**
  * Created by Flo on 30-08-15.
  */
-public class ChronometterTimer extends Timer {
+public class ChronometerTimer extends Timer {
 
     private long nanoTime;
     private TextView chronoView;
@@ -21,7 +21,7 @@ public class ChronometterTimer extends Timer {
     /**
      * @param timeView the TextView where it will be written the chronometer
      */
-    public ChronometterTimer(TextView timeView) {
+    public ChronometerTimer(TextView timeView) {
         super();
         this.nanoTime = System.nanoTime();
         myHandler = new Handler();
