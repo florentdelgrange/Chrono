@@ -15,4 +15,19 @@
         android:textColor="#ffffff"
         android:textStyle="bold"
         android:textSize="80dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:src="@drawable/playbutton"
+        android:layout_below="@+id/textView"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_marginEnd="39dp"
+        android:visibility="visible"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent" />
+
 </RelativeLayout>

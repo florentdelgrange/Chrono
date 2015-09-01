@@ -9,10 +9,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PLAY !"
+        android:text="Chrono"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
         android:background="#5b6264"
         android:elegantTextHeight="true"
@@ -20,5 +18,7 @@
         android:textStyle="bold"
         android:enabled="true"
         android:focusable="true"
-        android:focusableInTouchMode="true" />
+        android:focusableInTouchMode="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
