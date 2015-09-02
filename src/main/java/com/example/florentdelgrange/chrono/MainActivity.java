@@ -34,13 +34,19 @@ public class MainActivity extends AppCompatActivity {
                                 timer.pause();
                                 playButton.setImageResource(R.drawable.playbutton);
                                 break;
-                            case PAUSE:
+                            default:
                                 timer.run();
                                 playButton.setImageResource(R.drawable.pausebutton);
                                 break;
-                            default:
-                                break;
                         }
+                    }
+                });
+                final ImageButton stopButton = (ImageButton) findViewById(R.id.imageButton2);
+                stopButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        timer.stop();
+                        playButton.setImageResource(R.drawable.playbutton);
                     }
                 });
             }
