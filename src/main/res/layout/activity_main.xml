@@ -6,19 +6,31 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:background="#2d2d2d">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chrono"
-        android:id="@+id/button"
-        android:textColor="#ffffff"
-        android:background="#5b6264"
-        android:elegantTextHeight="true"
-        android:clickable="true"
-        android:textStyle="bold"
-        android:enabled="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    <FrameLayout
+        android:layout_width="@dimen/abc_search_view_preferred_width"
+        android:layout_height="@dimen/abc_search_view_preferred_width"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/scene_root"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="175dp"
+            android:layout_height="86dp"
+            android:text="Chrono"
+            android:id="@+id/button"
+            android:textColor="#ffffff"
+            android:background="#5b6264"
+            android:elegantTextHeight="true"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:enabled="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
 </RelativeLayout>

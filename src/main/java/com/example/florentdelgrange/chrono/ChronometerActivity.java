@@ -16,7 +16,7 @@ public class ChronometerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chrono);
+
 
         timer = new ChronometerTimer((TextView) findViewById(R.id.textView));
         final ImageButton playButton = (ImageButton) findViewById(R.id.imageButton);

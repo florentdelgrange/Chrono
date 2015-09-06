@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 /**
  * Created by florentdelgrange on 11/08/15.
+ * USELESS
  */
 public class MainActivity2 extends Activity {
     public static int WINDOWSIZE;

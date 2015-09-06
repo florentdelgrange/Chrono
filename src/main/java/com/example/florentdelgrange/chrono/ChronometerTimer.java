@@ -19,6 +19,7 @@ public class ChronometerTimer extends Timer {
     private Handler myHandler;
     private Runnable timerTask;
     private TimerTask scheduleTask;
+    private boolean init;
 
 
     public enum ChronoState {RUN, PAUSE, STOP}
@@ -32,6 +33,7 @@ public class ChronometerTimer extends Timer {
      */
     public ChronometerTimer(TextView timeView) {
         super();
+        init = false;
         this.breakTime = 0;
         this.nanoPauseTime = System.nanoTime();
         this.nanoTime = System.nanoTime();
@@ -80,6 +82,7 @@ public class ChronometerTimer extends Timer {
      * update the textView to display the time
      */
     public void run() {
+        init = true;
         breakTime += System.nanoTime() - nanoPauseTime;
         scheduleTask = new TimerTask() {
             @Override
@@ -102,13 +105,15 @@ public class ChronometerTimer extends Timer {
     }
 
     public void stop(){
-        this.breakTime = 0;
-        this.nanoPauseTime = System.nanoTime();
-        this.nanoTime = System.nanoTime();
-        scheduleTask.cancel();
-        purge();
-        chronoView.setText("0:00:00");
-        chronoView.invalidate();
+        if(init) {
+            this.breakTime = 0;
+            this.nanoPauseTime = System.nanoTime();
+            this.nanoTime = System.nanoTime();
+            scheduleTask.cancel();
+            purge();
+            chronoView.setText("0:00:00");
+            chronoView.invalidate();
+        }
         state = ChronoState.STOP;
     }
 
