@@ -12,10 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.example.florentdelgrange.chrono.ChronometerTimer;
 import com.example.florentdelgrange.chrono.MainActivity;
 import com.example.florentdelgrange.chrono.R;
 
@@ -52,6 +49,7 @@ public class MenuMode implements AppState {
             }
         });
     }
+
 
     @Override
     public void onKeyDown() {

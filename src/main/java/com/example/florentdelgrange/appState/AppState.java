@@ -5,6 +5,10 @@ package com.example.florentdelgrange.appState;
  */
 public interface AppState {
 
+    /**
+     * Called when the keyDown is pressed.
+     * The action changes with the state.
+     */
     void onKeyDown();
 
 }

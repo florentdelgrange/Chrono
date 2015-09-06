@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.florentdelgrange.chrono.ChronometerTimer;
+import com.example.florentdelgrange.chrono.chronometer.ChronometerTimer;
 import com.example.florentdelgrange.chrono.MainActivity;
 import com.example.florentdelgrange.chrono.R;
 
@@ -26,21 +26,12 @@ public class ChronometerMode implements AppState {
 
     public ChronometerMode(MainActivity mainActivity){
         this.mainActivity = mainActivity;
-        final ChronometerTimer timer = new ChronometerTimer((TextView) mainActivity.findViewById(R.id.textView));
         final ImageButton playButton = (ImageButton) mainActivity.findViewById(R.id.imageButton);
+        final ChronometerTimer timer = new ChronometerTimer((TextView) mainActivity.findViewById(R.id.textView), playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (timer.getState()) {
-                    case RUN:
-                        timer.pause();
-                        playButton.setImageResource(R.drawable.playbutton);
-                        break;
-                    default:
-                        timer.run();
-                        playButton.setImageResource(R.drawable.pausebutton);
-                        break;
-                }
+                timer.getState().playClick();
             }
         });
         final ImageButton stopButton = (ImageButton) mainActivity.findViewById(R.id.imageButton2);

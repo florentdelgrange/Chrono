@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChronometerActivity"
+            android:name=".chronometer.ChronometerActivity"
             android:label="@string/chronometer_name"/>
 
     </application>

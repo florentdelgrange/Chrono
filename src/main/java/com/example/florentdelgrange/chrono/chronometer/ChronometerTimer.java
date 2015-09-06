@@ -1,5 +1,6 @@
-package com.example.florentdelgrange.chrono;
+package com.example.florentdelgrange.chrono.chronometer;
 
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -20,19 +21,17 @@ public class ChronometerTimer extends Timer {
     private Runnable timerTask;
     private TimerTask scheduleTask;
     private boolean init;
+    private ImageButton playButton;
 
-
-    public enum ChronoState {RUN, PAUSE, STOP}
-
-    ;
-    private ChronoState state;
+    private ChronometerState state;
 
 
     /**
      * @param timeView the TextView where it will be written the chronometer
      */
-    public ChronometerTimer(TextView timeView) {
+    public ChronometerTimer(TextView timeView, ImageButton playButton) {
         super();
+        this.playButton = playButton;
         init = false;
         this.breakTime = 0;
         this.nanoPauseTime = System.nanoTime();
@@ -73,7 +72,7 @@ public class ChronometerTimer extends Timer {
                 chronoView.invalidate();
             }
         };
-        state = ChronoState.PAUSE;
+        state = new InPause(this, playButton);
 
     }
 
@@ -91,17 +90,17 @@ public class ChronometerTimer extends Timer {
             }
         };
         schedule(scheduleTask, 0, 17);
-        state = ChronoState.RUN;
+        state = new Running(this, playButton);
     }
 
     /**
      * put the chronometer in pause mode
      */
     public void pause() {
-        state = ChronoState.PAUSE;
         scheduleTask.cancel();
         purge();
         nanoPauseTime = System.nanoTime();
+        state = new InPause(this, playButton);
     }
 
     public void stop(){
@@ -114,14 +113,14 @@ public class ChronometerTimer extends Timer {
             chronoView.setText("0:00:00");
             chronoView.invalidate();
         }
-        state = ChronoState.STOP;
+        state = new InPause(this, playButton);
     }
 
     /**
      * get the chronometer state (in pause or running)
      * @return the state of the chronometer
      */
-    public ChronoState getState() {
+    public ChronometerState getState() {
         return state;
     }
 
