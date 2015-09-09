@@ -4,22 +4,36 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 
-import com.example.florentdelgrange.appState.AppState;
-import com.example.florentdelgrange.appState.MenuMode;
+import com.example.florentdelgrange.chrono.appState.AppState;
+import com.example.florentdelgrange.chrono.appState.MenuMode;
 
 public class MainActivity extends AppCompatActivity {
 
-    AppState state;
+    private AppState state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws java.lang.NoSuchMethodError{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        if(savedInstanceState != null && !savedInstanceState.isEmpty()){
+            state = (AppState) savedInstanceState.getSerializable("laststate");
+            Log.i("MY",state.debug());
+            state.reload(this);
+        }
+        else {
+            state = new MenuMode(this);
+        }
 
-        state = new MenuMode(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putSerializable("laststate", state);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     public void setState(AppState state){

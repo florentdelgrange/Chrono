@@ -1,4 +1,4 @@
-package com.example.florentdelgrange.appState;
+package com.example.florentdelgrange.chrono.appState;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -21,11 +21,23 @@ import com.example.florentdelgrange.chrono.R;
  */
 public class MenuMode implements AppState {
 
-    MainActivity mainActivity;
+    private MainActivity mainActivity;
 
     public MenuMode(final MainActivity mainActivity){
         this.mainActivity = mainActivity;
+        init();
+    }
 
+    @Override
+    public void onKeyDown() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mainActivity.startActivity(intent);
+    }
+
+    @Override
+    public void init() {
         final ViewGroup mSceneRoot = (ViewGroup) mainActivity.findViewById(R.id.scene_root);
 
         Button chronoButton = (Button) mainActivity.findViewById(R.id.button);
@@ -50,12 +62,18 @@ public class MenuMode implements AppState {
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    public void reload(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+        final ViewGroup mSceneRoot = (ViewGroup) mainActivity.findViewById(R.id.scene_root);
+        Scene menuScene = Scene.getSceneForLayout(mSceneRoot, R.layout.activity_main, mainActivity);
+        TransitionManager.go(menuScene);
+        init();
+    }
 
     @Override
-    public void onKeyDown() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mainActivity.startActivity(intent);
+    public String debug() {
+        return ">>> MENU MODE";
     }
 }
