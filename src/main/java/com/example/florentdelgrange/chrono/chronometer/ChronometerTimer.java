@@ -23,6 +23,7 @@ public class ChronometerTimer extends Timer {
     private TimerTask scheduleTask;
     private boolean init;
     private ImageButton playButton;
+    private String stringTime;
 
     private ChronometerState state;
 
@@ -67,8 +68,8 @@ public class ChronometerTimer extends Timer {
                         break;
                 }
 
-                String time = stringBuilder.substring(0);
-                chronoView.setText(time);
+                stringTime = stringBuilder.substring(0);
+                chronoView.setText(stringTime);
                 chronoView.setTextSize(80);
                 chronoView.invalidate();
             }
@@ -100,6 +101,7 @@ public class ChronometerTimer extends Timer {
     public void pause() {
         scheduleTask.cancel();
         purge();
+        chronoView.setText(stringTime);
         nanoPauseTime = System.nanoTime();
         state = new InPause(this, playButton);
     }
@@ -123,6 +125,79 @@ public class ChronometerTimer extends Timer {
      */
     public ChronometerState getState() {
         return state;
+    }
+
+    /**
+     * set the PLAY button
+     * @param button the play button that will be change with PAUSE button
+     */
+    public void setButton(ImageButton button) {
+        this.playButton = button;
+    }
+
+    /**
+     * get the text view where the chronometer time is written
+     * @return the chronometer textView that is always refresh by timer task and handler
+     */
+    public TextView getTextView() {
+        return chronoView;
+    }
+
+    /**
+     * set the textView where the chronometer time is written
+     * @param textView
+     */
+    public void setTextView(TextView textView) {
+            this.chronoView = textView;
+    }
+
+    /**
+     * Refresh the buttons and the textView.
+     * Called when the screen rotate e.g.
+     */
+    public void reload(){
+        state.reload(playButton);
+    }
+
+    /**
+     * Set the schedule task.
+     * This task will contain the handler (that contains the task) that will refresh the textView.
+     * @param scheduleTask
+     */
+    public void setScheduleTask(TimerTask scheduleTask) {
+        this.scheduleTask = scheduleTask;
+    }
+
+    /**
+     * Get the task that contains the handler
+     * @return the TimerTask
+     */
+    public TimerTask getScheduleTask(){
+        return scheduleTask;
+    }
+
+    /**
+     * get the handler that contains the Runnable that refresh the textView.
+     * @return the Handler
+     */
+    public Handler getHandler(){
+        return myHandler;
+    }
+
+    /**
+     * get the runnable tha refresh the textView
+     * @return the Runnable that refresh the textView
+     */
+    public Runnable getTimerTask(){
+        return timerTask;
+    }
+
+    /**
+     * get the chronometer time as a String
+     * @return the chronometer time
+     */
+    public String getStringTime(){
+        return stringTime;
     }
 
 

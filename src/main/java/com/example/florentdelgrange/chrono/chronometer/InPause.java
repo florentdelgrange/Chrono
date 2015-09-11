@@ -22,4 +22,10 @@ public class InPause implements ChronometerState {
         timer.run();
         playButton.setImageResource(R.drawable.pausebutton);
     }
+
+    @Override
+    public void reload(ImageButton playButton) {
+        this.playButton = playButton;
+        timer.getTextView().setText(timer.getStringTime());
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.florentdelgrange.chrono.chronometer;
 
+import android.widget.ImageButton;
+
 /**
  * Created by Flo on 06-09-15.
  */
@@ -10,5 +12,7 @@ public interface ChronometerState {
      * Changes with the chronometer state.
      */
     void playClick();
+
+    void reload(ImageButton playButton);
 
 }

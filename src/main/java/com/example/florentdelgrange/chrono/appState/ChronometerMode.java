@@ -7,6 +7,7 @@ import android.transition.Scene;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,12 @@ public class ChronometerMode implements AppState {
         final ImageButton playButton = (ImageButton) mainActivity.findViewById(R.id.imageButton);
         if(timer == null) {
             timer = new ChronometerTimer((TextView) mainActivity.findViewById(R.id.textView), playButton);
+            Log.i("MY","new timer");
+        }
+        else{
+            timer.setButton(playButton);
+            timer.setTextView((TextView) mainActivity.findViewById(R.id.textView));
+            timer.reload();
         }
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +84,7 @@ public class ChronometerMode implements AppState {
         Scene chronoScene = Scene.getSceneForLayout(mSceneRoot, R.layout.chrono, mainActivity);
         TransitionManager.go(chronoScene);
         init();
+
     }
 
     @Override
